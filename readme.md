@@ -70,7 +70,7 @@ The solvers are quite fast and need approximatively 75 milliseconds (with a proc
 We use a classic BFS approach to explore all the possible sequences of configurations, we keep a queue with the moves leading to these configurations and the moves for going back to parent configurations.  
 
 Of course we must keep track of the visited configurations, for that we have a function intRepresentation in the class RushHour that defines an injection from the set of all possible configurations with the same cars to the set of positive integers (a hash function):  
-if $M = max\{Width, Height\}$ and if we have $N$ cars, then each configuration can be matched to an $N$ vector $(p_1, \ldots, p_N) \in \{1,\ldots, M\}^N$ giving the positions of the cars (each car have only one variable coordinate, while the other is constant), which can itself be matched to an integer  
+if $M =$max(Width, Height) and if we have $N$ cars, then each configuration can be matched to an $N$ vector $(p_1, \ldots, p_N) \in \{1,\ldots, M\}^N$ giving the positions of the cars (each car have only one variable coordinate, while the other is constant), which can itself be matched to an integer  
 $$p_1 + p_2 M + p_2 M^2 \ldots + p_N M^{N-1}.$$
 
 To better understand the algorithm see SolverBFS.solve().
