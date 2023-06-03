@@ -2,6 +2,10 @@
 --------------------------------
 
 We implemented an animated solver to the puzzle "rush hour". Our solver is implemented in Java, but we also give an experimental version coded in python in RushHour.ipynb, that is working well but not animated, and the classes are structured differently from the Java code. 
+<p align="center">
+  <img src="rushHourGIF.gif" alt="animated" width=400, height=400/>
+</p>
+
 
 ## Rules of the game
 --------------------
@@ -18,28 +22,24 @@ The classes Car, Parking and RushHour define the rules of the game, while the cl
 
 Both classes implement the same algorithm and return the list of moves to solve the puzzle given an initial configuration. The difference is that AnimatedSolverBFS gives the possibility of visualizing the backtracking search of the optimal solution.  
 
-The main file is Program.cs and it contains a Main method, it gives an example of how to create custom initial configurations and solve them easily.  
-Launch it using the command
-```
-java Program
-```
-in the bin folder.  
+The main file Program.cs gives an example of how to use the animated solver.  
+We define in the same file 4 puzzles on a 6x6 grid: easyPuzzle, mediumPuzzle, hardPuzzle and hardestPuzzle, requiring respectively 6, ,16 ,26 and 51 moves to be solved. 
 
-Here another simple example of using the solver.
+You can use the solver with one of them or define your own puzzle as in the following example
 ```
-// initiate the puzzle
-//--------------------
+// initiate the puzzle and add cars
+//---------------------------------
 RushHour puzzle = new RushHour(width, height);
 
-// add cars to the puzzle
-//-----------------------
 // puzzle.addCar(x, y, size,
 //               orientation: Car.HORIZONTAL or Car.VERTICAL,
 //               isRed : true or false); // false is the default value
 
-puzzle.addCar(1,2,2, car.HORIZONTAL, true); // the red car
-puzzle.addCar(2,2,3, car.VERTICAL);
-
+puzzle.addCar(0,3,2,Car.HORIZONTAL, true); // the red car
+puzzle.addCar(2,0,2,Car.HORIZONTAL);
+puzzle.addCar(4,0,2,Car.VERTICAL); 
+puzzle.addCar(3,3,3,Car.VERTICAL);	
+puzzle.addCar(2,2,2,Car.VERTICAL);	 
 
 // Create a panel for the animation
 //---------------------------------
@@ -70,10 +70,8 @@ The solvers are quite fast and need approximatively 75 milliseconds (with a proc
 We use a classic BFS approach to explore all the possible sequences of configurations, we keep a queue with the moves leading to these configurations and the moves for going back to parent configurations.  
 
 Of course we must keep track of the visited configurations, for that we have a function intRepresentation in the class RushHour that defines an injection from the set of all possible configurations with the same cars to the set of positive integers (a hash function):  
-if $M = max\{Width, Height\}$ and if we have $N$ cars, then each configuration can be matched to an $N$ vector $(p_1, \ldots, p_N) \in \{1,\ldots, M\}^N$ giving the positions of the cars (each car have only one variable coordinate, while the other is constant), which can itself be matched to an integer
-$$
-p_1 + p_2 M + p_2 M^2 \ldots + p_N M^{N-1}.
-$$
+if $M = max(Width, Height)$ and if we have $N$ cars, then each configuration can be matched to an $N$ vector $(p_1, \ldots, p_N) \in \{1,\ldots, M\}^N$ giving the positions of the cars (the position of each car is defined by only one coordinate and its orientation, which is fixed), which can itself be matched to an integer  
+$$p_1 + p_2 M + p_2 M^2 \ldots + p_N M^{N-1}.$$
 
 To better understand the algorithm see SolverBFS.solve().
 
