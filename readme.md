@@ -22,28 +22,24 @@ The classes Car, Parking and RushHour define the rules of the game, while the cl
 
 Both classes implement the same algorithm and return the list of moves to solve the puzzle given an initial configuration. The difference is that AnimatedSolverBFS gives the possibility of visualizing the backtracking search of the optimal solution.  
 
-The main file is Program.cs and it contains a Main method, it gives an example of how to create custom initial configurations and solve them easily.  
-Launch it using the command
-```
-java Program
-```
-in the bin folder.  
+The main file Program.cs gives an example of how to use the animated solver.  
+We define in the same file 4 puzzles on a 6x6 grid: easyPuzzle, mediumPuzzle, hardPuzzle and hardestPuzzle, requiring respectively 6, ,16 ,26 and 51 moves to be solved. 
 
-Here another simple example of using the solver.
+You can use the solver with one of them or define your own puzzle as in the following example
 ```
-// initiate the puzzle
-//--------------------
+// initiate the puzzle and add cars
+//---------------------------------
 RushHour puzzle = new RushHour(width, height);
 
-// add cars to the puzzle
-//-----------------------
 // puzzle.addCar(x, y, size,
 //               orientation: Car.HORIZONTAL or Car.VERTICAL,
 //               isRed : true or false); // false is the default value
 
-puzzle.addCar(1,2,2, car.HORIZONTAL, true); // the red car
-puzzle.addCar(2,2,3, car.VERTICAL);
-
+puzzle.addCar(0,3,2,Car.HORIZONTAL, true); // the red car
+puzzle.addCar(2,0,2,Car.HORIZONTAL);
+puzzle.addCar(4,0,2,Car.VERTICAL); 
+puzzle.addCar(3,3,3,Car.VERTICAL);	
+puzzle.addCar(2,2,2,Car.VERTICAL);	 
 
 // Create a panel for the animation
 //---------------------------------
