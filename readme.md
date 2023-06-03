@@ -2,8 +2,10 @@
 --------------------------------
 
 We implemented an animated solver to the puzzle "rush hour". Our solver is implemented in Java, but we also give an experimental version coded in python in RushHour.ipynb, that is working well but not animated, and the classes are structured differently from the Java code. 
+<p align="center">
+  ![](rushHourGIF.gif)
+</p>
 
-![](rushHourGIF.gif)
 
 ## Rules of the game
 --------------------
