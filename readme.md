@@ -3,6 +3,8 @@
 
 We implemented an animated solver to the puzzle "rush hour". Our solver is implemented in Java, but we also give an experimental version coded in python in RushHour.ipynb, that is working well but not animated, and the classes are structured differently from the Java code. 
 
+![](rushHourGIF.gif)
+
 ## Rules of the game
 --------------------
 We dispose of a parking (board) with cars placed horizontaly or verticaly and eventually with different sizes. horizontal cars can only move horizontaly and vertical ones only verticaly.  
